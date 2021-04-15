@@ -1,0 +1,125 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Intro -->
+                <section id="intro" class="wrapper style1">
+                    <div class="title">Introduction</div>
+                    <div class="container">
+                        <!--<p class="style1">What is a Stock Market and why is it so important?</p> -->
+                        <p class="style2">
+                            A stock market is the aggregation of buyers and sellers of stocks, which represent ownership claims on businesses.<br class="mobile-hide" />
+                        </p>
+                        {% if user.is_authenticated %}
+                        <section id="container">
+                            <p class="style3"><strong>Welcome to your stock market journey!</strong></p>
+                            <ul class="actions">
+                                <li><a href="{% url 'new_transaction' %}" class="button style3 large">Start Trading</a></li>
+                            </ul>
+                        </section>
+                        {% else %}
+                        <section id="container">
+                            <p class="style3"><strong>Start your journey into the Stock Market by registering below.</strong></p>
+                            <ul class="actions">
+                                <li><a href="{% url 'register' %}" class="button style3 large">Get Started</a></li>
+                            </ul>
+                        </section>
+                        {% endif %}
+                    </div>
+                </section>
+
+            <!-- Main -->
+                <section id="main" class="wrapper style2">
+                    <div class="title">The Details</div>
+                    <div class="container">
+
+                        <!-- Features -->
+                            <section id="features">
+                                <header class="style1">
+                                    <h2>Features of StonkMarkit</h2>
+                                    <p>With your money at stake, here's how StonkMarkit helps</p>
+                                </header>
+                                <div class="feature-list">
+                                    <div class="row">
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon fa-image">Live Charts</h3>
+                                                <p>With visual aid, all graphs, from Candle Stick to Linear help you visualise the prices better.</p>
+                                            </section>
+                                        </div>
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon solid fa-sync">Latest Stocks</h3>
+                                                <p>Stock data extracted from Yahoo Finance, helps give you updated information on all Stock data, including opening/ closing prices and trends.</p>
+                                            </section>
+                                        </div>
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon solid fa-check">Stock Feedback</h3>
+                                                <p>Based on stock trends, we can recommend wether a stock is stable enough to get profitiable returns from or not.</p>
+                                            </section>
+                                        </div>
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon solid fa-cog">Settings</h3>
+                                                <p>There are no settings.</p>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="actions special">
+                                    {% if user.is_authenticated %}
+                                        <section id="container">
+                                            <li><a href="{% url 'new_transaction' %}" class="button style1 large">Start Trading</a></li>
+                                        </section>
+                                    {% else %}
+                                    <section id="container">
+                                        <li><a href="{% url 'register' %}" class="button style1 large">Get Started</a></li>
+                                        <li><a href="{% url 'login' %}" class="button style2 large">Login</a></li>
+                                    </section>
+                                    {% endif %}
+                                </ul>
+                            </section>
+
+                    </div>
+                </section>
+
+            <!-- Highlights -->
+                <section id="highlights" class="wrapper style3">
+                    <div class="title">The Creators</div>
+                    <div class="container">
+                        <div class="row aln-center">
+                            <div class="col-4 col-12-medium">
+                                <section class="highlight">
+                                    <div class="image featured"><img src="{% static 'images/utsav.jpg'%}" alt="" /></div>
+                                    <h3>Utsav Jolapara</h3>
+                                    <p>Wrote most parts of the Python models.</p>
+                                    <ul class="actions">
+                                        <li><div class="button style1">PES120181086</div></li>
+                                    </ul>
+                                </section>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <section class="highlight">
+                                    <div class="image featured"><img src="{% static 'images/avi.jpg' %}" alt="" /></div>
+                                    <h3><a href="#">Avinash Ratnam</a></h3>
+                                    <p>Wrote most of the Python models and the Django User Interface.</p>
+                                    <ul class="actions">
+                                        <li><div class="button style1">PES1201800883</div></li>
+                                    </ul>
+                                </section>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <section class="highlight">
+                                    <div class="image featured"><img src="{% static 'images/cmags.jpg' %}" alt="" /></div>
+                                    <h3><a href="#">Chandana Magapu</a></h3>
+                                    <p>Wrote most of the Django User Interface.</p>
+                                    <ul class="actions">
+                                        <li><div class="button style1">PES1201801041</div></li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+<section id="main" class="wrapper style2">
+    <div class="title">Transactions</div>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <!-- Features -->
+            <section id="features">
+                <header class="style1">
+                    <h2>Transaction History</h2>
+                    <p>Keep Track of all your exchanges</p>
+                </header>
+                <div class="feature-list">
+                    <h1 class="SymbolHeader">Buyer Transactions</h1>
+                    <br>
+                    <div class="row">
+                        <br>
+                        {% for transaction in tr_list_buyer %}
+                        <div class="col-6 col-12-medium">
+                            <section>
+                                <h3 class="fas fa-chart-line"><strong>Stock Name: </strong> {{transaction.stock_id}}</h3>
+                                <p><strong>Exchange Date: </strong> {{ transaction.transaction_date }}<br>
+                                <strong>User:</strong> {{ transaction.user }}<br>
+                                <strong>Type of Transaction:</strong> {{ transaction.type_transaction }}<br>
+                                <strong>Price per Stock: </strong> {{ transaction.price_per_stock }}<br>
+                                <strong>Number of Stocks: </strong> {{ transaction.numstocks }}</p>
+                            </section>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    <h1 class="SymbolHeader">Seller Transactions</h1>
+                    <br>
+                    <div class="row">
+                        <br>
+                        {% for transaction in tr_list_seller %}
+                        <div class="col-6 col-12-medium">
+                            <section>
+                                <h3 class="fas fa-chart-line"><strong>Stock Name: </strong>{{transaction.stock_id}}</h3>
+                                <p><strong>Exhange Date: </strong>{{ transaction.transaction_date }}<br>
+                                <strong>User: </strong>{{ transaction.user }}<br>
+                                <strong>Type of Transaction: </strong>{{ transaction.type_transaction }}<br>
+                                <strong>Price per Stock: </strong>{{ transaction.price_per_stock }}<br>
+                                <strong>Number of Stocks: </strong>{{ transaction.numstocks }}</p>
+                            </section>
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <ul class="actions special">
+                    <li><a href="{% url 'new_transaction' %}" class="button style1 large">New Transaction</a></li>
+                </ul>
+            </section>
+        {% else %}
+            <section id="features">
+                <header class="style1">
+                    <h2>Don't have an Account?</h2>
+                    <p>Make a free account by clicking the button below</p>
+                </header>
+               
+                <ul class="actions special">
+                    <li><a href="{% url 'register' %}" class="button style1 large">Get Started</a></li>
+                    <li><a href="{% url 'login' %}" class="button style2 large">Login</a></li>
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

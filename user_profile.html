@@ -1,0 +1,69 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Intro -->
+                
+
+            <!-- Main -->
+                <section id="main" class="wrapper style2">
+                    <div class="title">Your Details</div>
+                    <div class="container">
+                            {% if user.is_authenticated %}
+                        <!-- Features -->
+                            <section id="features">
+                                <div class="feature-list">
+                                    <div class="row">
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon fa-user">{{user.username}}</h3>
+                                                <p>Your Username</p>
+                                            </section>
+                                        </div>
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon solid fa-envelope">{{user.email}}</h3>
+                                                <p>Your Email ID.</p>
+                                            </section>
+                                        </div>
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon solid fa-user-tie">{{user.first_name}}</h3>
+                                                <p>First Name.</p>
+                                            </section>
+                                        </div>
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <h3 class="icon solid fa-user-tie">{{user.last_name}}</h3>
+                                                <p>Last Name.</p>
+                                            </section>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="actions special">
+                                        <section id="container">
+                                            <li><a href="{% url 'new_transaction' %}" class="button style1 large">Start Trading</a></li>
+                                        </section>
+                                        {% if user.is_superuser %}
+                                        <div class="col-6 col-12-medium">
+                                            <section>
+                                                <a class="button style2 large" href="{% url 'admin_dashboard' %}"><h3 class="icon solid fa-cog"> Admin Dashboard</h3></a>
+                                                <p>This will be visible only if you have Admin Privileges</p>
+                                            </section>
+                                        </div>
+                                        {% endif %}
+                                    {% else %}
+                                    <header class="style1">
+                                        <h2>Don't have an Account?</h2>
+                                        <p>Make a free account by clicking the button below</p>
+                                    </header>
+                                    <ul class="actions special">
+                                        <li><a href="{% url 'register' %}" class="button style1 large">Get Started</a></li>
+                                        <li><a href="{% url 'login' %}" class="button style2 large">Login</a></li>
+                                    </ul>
+                                    {% endif %}
+                                </ul>
+                            </section>
+                    </div>
+                </section>
+{% endblock %}

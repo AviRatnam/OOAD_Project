@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>StonkMarkit</title>
+
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../../static/assets/css/main.css" />
+    </head>
+    <body class="homepage is-preload">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+                <section id="header" class="wrapper">
+
+                    <!-- Logo -->
+                        <div id="logo">
+                            <h1>StonkMarkit</h1>
+                            <p>A stock market analysis and trading website</p>
+                        </div>
+
+                    <!-- Nav -->
+                        <nav id="nav">
+                            <ul>
+                                <li class="current"><a href="{% url 'home_page' %}">Home</a></li>
+                                <li>
+                                    <a href="#">Stock Info</a>
+                                    <ul>
+                                        <li><a href="https://in.finance.yahoo.com/">Stock News</a></li>
+                                        <li><a href="{% url 'live_stocks' %}">Live Stocks</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    {% if user.is_authenticated %}
+                                    <a href="#">
+                                            <p>{{ user.get_username }}</p>
+                                    </a>
+                                        <ul>
+                                            <li><a href="{% url 'user_profile' %}">My Profile</a></li>
+                                            <li><a href="{% url 'transaction_history' %}">My Transactions</a></li>
+                                            <li><a href="{% url 'live_stocks' %}">Live Stocks</a></li>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        </ul>
+                                        {% else %}
+                                        <a href="{% url 'login' %}">
+                                            <p>Login</p>
+                                        </a>
+                                        {% endif %}
+                                </li>
+                                
+                            </ul>
+                        </nav>
+
+                </section>
+                {% block content %}
+                {% endblock %}
+
+            <!-- Footer -->
+                <section id="footer" class="wrapper">
+                    <div class="title">About the Creators</div>
+                    <div class="container">
+                        <header class="style1">
+                            <h2>Final Project for UE18CS355</h2>
+                            <p>
+                                Avinash Ratnam PES1201800883.<br />
+                                Utsav Jolapara PES1201801086.<br />
+                                Harichandana Magapu PES1201801041.<br />
+                            </p>
+                        </header>
+                        <div id="copyright">
+                            <ul>
+                                <li>&copy; UE18CS355.</li><li>Design: Avinash Ratnam</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+        </div>
+
+        <!-- Scripts -->
+            <script src="{% static 'assets/js/jquery.min.js'%}"></script>
+            <script src="{% static 'assets/js/jquery.dropotron.min.js'%}"></script>
+            <script src="{% static 'assets/js/browser.min.js'%}"></script>
+            <script src="{% static 'assets/js/breakpoints.min.js'%}"></script>
+            <script src="{% static 'assets/js/util.js'%}"></script>
+            <script src="{% static 'assets/js/main.js'%}"></script>
+
+    </body>
+</html>

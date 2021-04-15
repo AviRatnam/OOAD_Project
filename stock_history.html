@@ -1,0 +1,57 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+<section id="main" class="wrapper style2">
+    <div class="title">Transactions</div>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <!-- Features -->
+            <section id="features">
+                <header class="style1">
+                    <h2>Transaction History</h2>
+                    <p>Keep Track of all your exchanges</p>
+                </header>
+                <div class="feature-list">
+                    <div class="row">
+                        {% for stock in stock_list %}
+                        <div class="col-6 col-12-medium">
+                            <section>
+                                <h3 class="fas fa-chart-line">{{stock.stock_id}}</h3>
+                                <p>
+                                <strong>Date:</strong> {{ stock.date }}<br>
+                                <strong>Opening Price:</strong> {{ stock.open_price }}<br>
+                                <strong>Highest Price:</strong> {{ stock.high }}<br>
+                                <strong>Lowest Price:</strong> {{ stock.low }}<br>
+                                <strong>Closing Price:</strong> {{ stock.close }}<br>
+                                <strong>Adjusted Price:</strong> {{ stock.adjusted_close }}<br>
+                                <strong>Volume of Stocks:</strong> {{ stock.volume }}
+                                </p>
+                            </section>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <ul class="actions special">
+                    <li><a href="{% url 'new_transaction' %}" class="button style1 large">New Transaction</a></li>
+                </ul>
+            </section>
+        {% else %}
+            <section id="features">
+                <header class="style1">
+                    <h2>Don't have an Account?</h2>
+                    <p>Make a free account by clicking the button below</p>
+                </header>
+                <ul class="actions special">
+                    <li><a href="{% url 'register' %}" class="button style1 large">Get Started</a></li>
+                    <li><a href="{% url 'login' %}" class="button style2 large">Login</a></li>
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

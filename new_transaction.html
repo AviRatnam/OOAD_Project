@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br>
+    {% if user.is_authenticated %}
+    <h1 class="SymbolHeader">Enter your Transaction Details</h1>
+    <br>
+    <div class="formDiv">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button type="submit" class="save btn btn-default">Save</button>
+            <p>* indicates it is compulsary</p>
+        </form>
+    </div>
+    <br>
+    {% else %}
+    <section id="features">
+        <header class="style1">
+            <h2>Don't have an Account?</h2>
+            <p>Make a free account by clicking the button below</p>
+        </header>
+        <ul class="actions special">
+            <li><a href="{% url 'register' %}" class="button style1 large">Get Started</a></li>
+            <li><a href="{% url 'login' %}" class="button style2 large">Login</a></li>
+        </ul>
+    </section>
+    <br>
+    <br>
+    <br>
+    {% endif %}
+{% endblock %}
+
+
