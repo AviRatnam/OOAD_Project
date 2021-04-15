@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}
+    {% if user.is_authenticated %}
+        Welcome Admin
+    {% else %}
+        Unauthorized Access
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<section id="main" class="wrapper style2">
+    <div class="title">Transactions</div>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <!-- Features -->
+            <section id="features">
+                <header style="padding: 1em 0 1em 0;" class="style1">
+                    <h2>Transaction History</h2>
+                    <p style = "margin: 0;">Keep Track of all your exchanges</p>
+                </header>
+                <ul style = "margin: 0 0 3em 0;" class="actions special">
+                    <li><a href="{% url 'new_transaction' %}" class="button style1 large">Today's Stock Price</a></li>
+                    <li><a href="{% url 'home_page' %}" class="button style2 large">View Stock Price History</a></li>
+                </ul>
+                <div class="feature-list">
+                    <div class="row">
+                        {% for transaction in tr_list %}
+                        <div class="col-6 col-12-medium">
+                            <section>
+                                <h3 class="fas fa-chart-line"><strong>Stock Name: </strong> {{transaction.stock_id}}</h3>
+                                <p><strong>Exchange Date: </strong> {{ transaction.transaction_date }}<br>
+                                <strong>Buyer:</strong> {{ transaction.buyer }}<br>
+                                <strong>Seller:</strong> {{ transaction.seller }}<br>
+                                <strong>Price per Stock: </strong> {{ transaction.price_per_stock }}<br>
+                                <strong>Number of Stocks: </strong> {{ transaction.numstocks }}</p>
+                            </section>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <ul class="actions special">
+                    <li><a href="{% url 'new_stocksymbol' %}" class="button style1 large">Add New Stock Symbol</a></li>
+                    <li><a href="{% url 'home_page' %}" class="button style2 large">Delete Transaction</a></li>
+                </ul>
+            </section>
+        {% else %}
+            <section id="features">
+                <header class="style1">
+                    <h2>Unauthorized Access</h2>
+                    <p>Please check your current URL</p>
+                </header>
+               
+                <ul class="actions special">
+                    <li><a href="{% url 'home_page' %}" class="button style2 large">Go back to safety</a></li>
+                </ul>
+            </section>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

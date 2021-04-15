@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br>
+    <h1 class="SymbolHeader">Enter your details</h1>
+    <br>
+    <br>
+    <div class="formDiv">
+        <form method="POST" class="form-group">
+            {% csrf_token %}
+            {{form|crispy}}
+            <br>
+            <button type="submit" class="btn btn-success">Login</button>
+            <br>
+            <p>* indicates it is compulsary</p>
+            <p>Don't have an account? <a href="{% url 'register' %}">Register now.</a></p>
+        </form>
+        <img class="new_stocksymbol" src="{% static 'images/new_stocksymbol.png' %}" alt="" />
+    </div>
+    <br>
+{% endblock %}

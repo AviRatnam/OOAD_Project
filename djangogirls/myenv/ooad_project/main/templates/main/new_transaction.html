@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <br>
+    <h1 class="SymbolHeader">Enter your Transaction Details</h1>
+    <br>
+    <div class="formDiv">
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button type="submit" class="save btn btn-default">Save</button>
+            <p>* indicates it is compulsary</p>
+        </form>
+    </div>
+    <br>
+
+{% endblock %}
