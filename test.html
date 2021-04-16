@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<br>
+<h1 class="SymbolHeader"> Live Stocks Graph for NASDAQ </h1>
+<div class="col-12 my-4">
+    <div class="card mx-auto py-3">
+    <h1 class="SymbolHeader">{{name1|safe}}<h1>
+    {{candlestick1 | safe}}
+    </div>
+</div>
+<div class="col-12 my-4">
+    <div class="card mx-auto py-3">
+    <h1 class="SymbolHeader">{{name2|safe}}<h1>
+    {{candlestick2 | safe}}
+    </div>
+</div>
+<div class="col-12 my-4">
+    <div class="card mx-auto py-3">
+    <h1 class="SymbolHeader">{{name3|safe}}<h1>
+    {{candlestick3 | safe}}
+    </div>
+</div>
+<br>
+<div class="formDiv">
+<h2 >Please enter the company listed under NASDAQ</h2>
+</div>
+<div class="formDiv">
+<br>
+<form method="POST" action='/stocks_search/' class="post-form customForm">
+{% csrf_token %}
+<input type="text" name="textfield">
+<br>
+<button type="submit">Search</button>
+<br>
+</form>
+</div>
+<br>
+<br>
+{% endblock %}
