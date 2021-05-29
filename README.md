@@ -7,7 +7,6 @@ Also replace the files in the folder with the ones outside oops.
 
 Once the environemt is up and running, the following will run the project.
 
-> cd ooad_project
 > python manage.py runserver
 
 Ta da
